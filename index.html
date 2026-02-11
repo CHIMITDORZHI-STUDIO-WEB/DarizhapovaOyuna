@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Дарижапова Оюна Шираповна — Портфолио</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Raleway:wght@300;400;500;600;700&family=Noto+Serif:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+/* ===== THEME VARIABLES ===== */
+:root,[data-theme="dark"]{
+    --bg:#1C1019;--surface:#2A1430;--surface-card:#331A3D;--surface-hover:#3D2048;
+    --text:#EDE6F0;--text-dim:#A899B0;--text-bright:#FBF8FC;
+    --plum:#5B2066;--plum-deep:#3A1042;--plum-light:#8B3FA0;--plum-glow:#A855C8;
+    --gold:#D4A853;--gold-light:#F0D48A;
+    --teal:#1ABC9C;--crimson:#C0392B;
+    --nav-bg:rgba(28,16,25,.92);--border-c:rgba(139,63,160,.12);
+    --card-border:rgba(139,63,160,.06);--card-hover-border:rgba(139,63,160,.18);
+    --shadow:rgba(0,0,0,.35);--grain-opacity:.025;
+}
+[data-theme="light"]{
+    --bg:#FAF6F1;--surface:#F0EBE4;--surface-card:#FFFFFF;--surface-hover:#F5F0E8;
+    --text:#3A2D40;--text-dim:#7A6B82;--text-bright:#1C1019;
+    --plum:#6B2D7B;--plum-deep:#5B2066;--plum-light:#8B3FA0;--plum-glow:#9B45B8;
+    --gold:#B8902A;--gold-light:#D4A853;
+    --teal:#16A085;--crimson:#C0392B;
+    --nav-bg:rgba(250,246,241,.92);--border-c:rgba(107,45,123,.12);
+    --card-border:rgba(107,45,123,.1);--card-hover-border:rgba(107,45,123,.25);
+    --shadow:rgba(0,0,0,.08);--grain-opacity:.012;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scrollbar-width:thin;scrollbar-color:var(--plum-light) var(--bg)}
+body{font-family:'Raleway',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;line-height:1.7;-webkit-font-smoothing:antialiased;transition:background .5s,color .5s}
+
+/* ===== SCROLL PROGRESS ===== */
+.scroll-progress{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--gold),var(--plum-glow));z-index:1100;width:0;transition:none}
+
+/* ===== PRELOADER ===== */
+.preloader{position:fixed;inset:0;z-index:9999;background:var(--bg);display:flex;align-items:center;justify-content:center;flex-direction:column;transition:opacity .9s cubic-bezier(.76,0,.24,1),transform .9s cubic-bezier(.76,0,.24,1)}
+.preloader.hide{opacity:0;pointer-events:none;transform:scale(1.04)}
+.preloader-icon{width:56px;height:56px;border:2px solid transparent;border-top-color:var(--gold);border-right-color:var(--plum-glow);border-radius:50%;animation:spin 1s linear infinite}
+.preloader-text{font-family:'Playfair Display',serif;font-size:.95rem;color:var(--gold);letter-spacing:.35em;text-transform:uppercase;margin-top:24px;animation:pulse 1.5s ease-in-out infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes pulse{0%,100%{opacity:.3}50%{opacity:1}}
+
+/* ===== GRAIN ===== */
+.grain{position:fixed;inset:0;z-index:8000;pointer-events:none;opacity:var(--grain-opacity);background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-repeat:repeat;background-size:200px;transition:opacity .5s}
+
+/* ===== NAV ===== */
+.nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:18px 32px;display:flex;justify-content:space-between;align-items:center;transition:all .5s cubic-bezier(.76,0,.24,1)}
+.nav.scrolled{padding:12px 32px;background:var(--nav-bg);backdrop-filter:blur(24px) saturate(1.4);border-bottom:1px solid var(--border-c)}
+.nav-left{display:flex;align-items:center;gap:20px}
+.nav-logo{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:600;color:var(--gold);letter-spacing:.12em}
+.nav-links{display:flex;gap:24px;list-style:none}
+.nav-links a{color:var(--text-dim);text-decoration:none;font-size:.7rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;position:relative;padding-bottom:3px;transition:color .3s}
+.nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1.5px;background:var(--gold);transition:width .4s cubic-bezier(.76,0,.24,1)}
+.nav-links a:hover,.nav-links a.active{color:var(--gold)}
+.nav-links a.active::after,.nav-links a:hover::after{width:100%}
+.nav-right{display:flex;align-items:center;gap:14px}
+
+/* Theme toggle */
+.theme-toggle{width:44px;height:24px;background:var(--surface-card);border-radius:12px;border:1px solid var(--border-c);cursor:pointer;position:relative;transition:background .3s,border-color .3s;flex-shrink:0}
+.theme-toggle::after{content:'';position:absolute;top:3px;left:3px;width:16px;height:16px;border-radius:50%;background:var(--gold);transition:transform .35s cubic-bezier(.76,0,.24,1);box-shadow:0 1px 4px rgba(0,0,0,.2)}
+[data-theme="light"] .theme-toggle::after{transform:translateX(20px)}
+.theme-toggle-icon{position:absolute;top:50%;transform:translateY(-50%);font-size:.65rem;line-height:1;pointer-events:none}
+.theme-toggle-icon.sun{right:5px}
+.theme-toggle-icon.moon{left:5px}
+
+/* Burger */
+.burger{display:none;flex-direction:column;gap:5px;cursor:pointer;z-index:1100;padding:6px}
+.burger span{width:26px;height:1.5px;background:var(--text);transition:all .35s}
+.burger.open span:nth-child(1){transform:rotate(45deg) translate(4px,4px)}
+.burger.open span:nth-child(2){opacity:0}
+.burger.open span:nth-child(3){transform:rotate(-45deg) translate(4px,-4px)}
+.mobile-nav{position:fixed;inset:0;z-index:1050;background:rgba(28,16,25,.97);backdrop-filter:blur(40px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:26px;opacity:0;pointer-events:none;transition:opacity .4s}
+[data-theme="light"] .mobile-nav{background:rgba(250,246,241,.97)}
+.mobile-nav.open{opacity:1;pointer-events:all}
+.mobile-nav a{font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--text);text-decoration:none;transition:color .3s}
+.mobile-nav a:hover{color:var(--gold)}
+
+/* ===== BACK TO TOP ===== */
+.btt{position:fixed;bottom:32px;right:32px;z-index:900;width:48px;height:48px;border-radius:50%;background:var(--plum);border:1px solid var(--plum-glow);color:var(--gold);display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;transform:translateY(20px);transition:opacity .4s,transform .4s,background .3s;box-shadow:0 8px 24px var(--shadow)}
+.btt.show{opacity:1;transform:translateY(0)}
+.btt:hover{background:var(--plum-glow);color:var(--text-bright)}
+.btt svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+
+/* ===== HERO ===== */
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 70% 55% at 50% 45%,rgba(91,32,102,.18) 0%,transparent 70%),radial-gradient(ellipse 50% 45% at 75% 55%,rgba(168,85,200,.07) 0%,transparent 55%),radial-gradient(ellipse 40% 35% at 15% 75%,rgba(212,168,83,.05) 0%,transparent 50%);transition:opacity .5s}
+[data-theme="light"] .hero-bg{opacity:.5}
+.hero-pattern{position:absolute;inset:0;opacity:.03;background-image:repeating-linear-gradient(0deg,transparent,transparent 80px,rgba(212,168,83,.2) 80px,rgba(212,168,83,.2) 81px),repeating-linear-gradient(90deg,transparent,transparent 80px,rgba(212,168,83,.2) 80px,rgba(212,168,83,.2) 81px);will-change:transform}
+.hero-orb{position:absolute;border-radius:50%;border:1px solid rgba(139,63,160,.08);will-change:transform}
+.hero-orb:nth-child(3){width:350px;height:350px;top:8%;left:-6%}
+.hero-orb:nth-child(4){width:450px;height:450px;bottom:5%;right:-10%}
+.hero-orb:nth-child(5){width:180px;height:180px;top:55%;left:55%;border-style:dashed;border-color:rgba(212,168,83,.06)}
+.hero-content{text-align:center;position:relative;z-index:2;padding:0 20px;max-width:900px;will-change:transform,opacity}
+.hero-eyebrow{font-size:.68rem;font-weight:700;letter-spacing:.4em;text-transform:uppercase;color:var(--gold);margin-bottom:22px;opacity:0;animation:fadeUp 1s 1.6s forwards}
+.hero-name{font-family:'Playfair Display',serif;font-size:clamp(2.4rem,6.5vw,5.5rem);font-weight:400;line-height:1.08;color:var(--text-bright);margin-bottom:18px;opacity:0;animation:heroReveal 1.2s 1.8s forwards}
+.hero-name em{font-style:italic;color:var(--plum-glow)}
+.hero-subtitle{font-family:'Noto Serif',serif;font-size:clamp(.92rem,1.6vw,1.15rem);color:var(--text-dim);max-width:640px;margin:0 auto 36px;font-style:italic;opacity:0;animation:fadeUp 1s 2.2s forwards}
+.hero-line{width:55px;height:1.5px;background:linear-gradient(90deg,var(--gold),var(--plum-glow));margin:0 auto 36px;opacity:0;animation:lineExpand 1s 2.4s forwards}
+.hero-stats{display:flex;justify-content:center;gap:clamp(28px,5vw,72px);flex-wrap:wrap;opacity:0;animation:fadeUp 1s 2.6s forwards}
+.hero-stat{text-align:center}
+.hero-stat-num{font-family:'Playfair Display',serif;font-size:clamp(2rem,3.8vw,3.2rem);font-weight:400;color:var(--gold);line-height:1}
+.hero-stat-label{font-size:.6rem;text-transform:uppercase;letter-spacing:.22em;color:var(--text-dim);margin-top:6px;display:block}
+.scroll-hint{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;opacity:0;animation:fadeUp 1s 3s forwards}
+.scroll-hint span{font-size:.58rem;letter-spacing:.3em;text-transform:uppercase;color:var(--text-dim)}
+.scroll-hint-line{width:1px;height:44px;background:linear-gradient(to bottom,var(--gold),transparent);animation:scrollPulse 2s ease-in-out infinite}
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+@keyframes heroReveal{from{opacity:0;transform:translateY(45px)}to{opacity:1;transform:translateY(0)}}
+@keyframes lineExpand{from{opacity:0;width:0}to{opacity:1;width:55px}}
+@keyframes scrollPulse{0%,100%{opacity:.25;transform:scaleY(.5);transform-origin:top}50%{opacity:1;transform:scaleY(1)}}
+
+/* ===== MARQUEE ===== */
+.marquee{overflow:hidden;padding:26px 0;border-top:1px solid var(--border-c);border-bottom:1px solid var(--border-c);background:rgba(91,32,102,.04)}
+[data-theme="light"] .marquee{background:rgba(107,45,123,.03)}
+.marquee-track{display:flex;width:max-content;animation:marq 50s linear infinite}
+.marquee-item{font-family:'Playfair Display',serif;font-size:clamp(1.2rem,2.5vw,2rem);font-weight:400;color:var(--text-dim);white-space:nowrap;padding:0 32px}
+.marquee-dot{display:inline-block;width:5px;height:5px;background:var(--gold);border-radius:50%;margin:0 24px;vertical-align:middle}
+@keyframes marq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ===== REVEAL ===== */
+.rv{opacity:0;transform:translateY(36px);transition:opacity .8s cubic-bezier(.76,0,.24,1),transform .8s cubic-bezier(.76,0,.24,1)}
+.rv.vis{opacity:1;transform:translateY(0)}
+.rv-d1{transition-delay:.1s}.rv-d2{transition-delay:.2s}.rv-d3{transition-delay:.3s}.rv-d4{transition-delay:.4s}
+
+/* ===== SECTION ===== */
+.sec{padding:clamp(56px,10vw,110px) clamp(18px,5vw,72px);max-width:1360px;margin:0 auto}
+.sec-head{margin-bottom:52px}
+.sec-eye{font-size:.62rem;font-weight:700;letter-spacing:.4em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;display:flex;align-items:center;gap:14px}
+.sec-eye::before{content:'';width:36px;height:1.5px;background:linear-gradient(90deg,var(--gold),var(--plum-glow))}
+.sec-title{font-family:'Playfair Display',serif;font-size:clamp(1.9rem,4.2vw,3.4rem);font-weight:400;color:var(--text-bright);line-height:1.15}
+.sec-title em{font-style:italic;color:var(--plum-glow)}
+.sec-desc{font-size:.96rem;color:var(--text-dim);max-width:640px;margin-top:18px;line-height:1.85}
+.divider{height:1px;background:linear-gradient(90deg,transparent,var(--border-c),transparent)}
+
+/* ===== ABOUT ===== */
+.about-wrap{background:var(--surface);position:relative;transition:background .5s}
+.about-wrap::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(212,168,83,.25),transparent)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
+.about-text p{color:var(--text-dim);margin-bottom:22px;font-size:.98rem;line-height:1.85}
+.about-text p:first-of-type::first-letter{font-family:'Playfair Display',serif;font-size:3.4rem;float:left;margin-right:10px;line-height:.82;color:var(--gold);font-weight:600}
+.about-cards{display:flex;flex-direction:column;gap:16px}
+.a-card{padding:22px 26px;background:var(--surface-card);border-radius:12px;border:1px solid var(--card-border);transition:all .4s cubic-bezier(.76,0,.24,1);position:relative;overflow:hidden}
+.a-card::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:linear-gradient(to bottom,var(--gold),var(--plum-glow));opacity:0;transition:opacity .4s}
+.a-card:hover{border-color:var(--card-hover-border);transform:translateX(5px)}
+.a-card:hover::before{opacity:1}
+.a-card-label{font-size:.6rem;text-transform:uppercase;letter-spacing:.22em;color:var(--gold);margin-bottom:5px;font-weight:700}
+.a-card-val{font-size:.95rem;color:var(--text);font-weight:500;line-height:1.55}
+
+/* ===== STATS BAND ===== */
+.stats-band{background:linear-gradient(135deg,rgba(91,32,102,.1),rgba(212,168,83,.04));border-top:1px solid var(--border-c);border-bottom:1px solid var(--border-c);transition:background .5s}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr)}
+.stat-item{text-align:center;padding:44px 16px;position:relative}
+.stat-item:not(:last-child)::after{content:'';position:absolute;right:0;top:22%;height:56%;width:1px;background:var(--border-c)}
+.stat-num{font-family:'Playfair Display',serif;font-size:clamp(2.2rem,4.5vw,3.6rem);font-weight:400;color:var(--gold);line-height:1}
+.stat-label{font-size:.62rem;text-transform:uppercase;letter-spacing:.2em;color:var(--text-dim);max-width:140px;margin:8px auto 0}
+
+/* ===== TIMELINE ===== */
+.tl-wrap{position:relative;padding-left:56px}
+.tl-line{position:absolute;left:18px;top:0;bottom:0;width:1.5px;background:linear-gradient(to bottom,transparent,var(--plum-glow),var(--plum-glow),transparent)}
+.tl-item{position:relative;margin-bottom:44px;padding:28px 32px;background:var(--surface);border:1px solid var(--card-border);border-radius:14px;transition:all .5s cubic-bezier(.76,0,.24,1)}
+.tl-item:hover{border-color:var(--card-hover-border);background:var(--surface-card);transform:translateX(6px);box-shadow:0 20px 50px var(--shadow)}
+.tl-item::before{content:'';position:absolute;left:-46px;top:34px;width:13px;height:13px;background:var(--bg);border:2px solid var(--plum-glow);border-radius:50%;z-index:1;transition:background .3s}
+.tl-item:hover::before{background:var(--plum-glow)}
+.tl-year{font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--gold);font-weight:500;margin-bottom:4px}
+.tl-title{font-size:1.05rem;font-weight:600;color:var(--text-bright);margin-bottom:7px}
+.tl-desc{color:var(--text-dim);font-size:.88rem;line-height:1.75}
+.tl-badge{display:inline-block;padding:3px 13px;border-radius:100px;font-size:.6rem;text-transform:uppercase;letter-spacing:.15em;margin-top:10px;font-weight:700}
+.badge-gold{background:rgba(212,168,83,.15);color:var(--gold)}
+.badge-plum{background:rgba(168,85,200,.15);color:var(--plum-glow)}
+.badge-teal{background:rgba(26,188,156,.12);color:var(--teal)}
+
+/* ===== PRODUCTIONS ===== */
+.prod-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:22px}
+.prod-card{position:relative;padding:32px 28px;background:var(--surface);border:1px solid var(--card-border);border-radius:18px;overflow:hidden;transition:all .5s cubic-bezier(.76,0,.24,1)}
+.prod-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--plum-glow),var(--gold));opacity:0;transition:opacity .4s}
+.prod-card:hover{transform:translateY(-7px);border-color:var(--card-hover-border);box-shadow:0 28px 70px var(--shadow)}
+.prod-card:hover::before{opacity:1}
+.prod-year-bg{font-family:'Playfair Display',serif;font-size:2.8rem;font-weight:400;color:rgba(139,63,160,.1);position:absolute;top:14px;right:22px;line-height:1}
+[data-theme="light"] .prod-year-bg{color:rgba(139,63,160,.08)}
+.prod-genre{font-size:.58rem;text-transform:uppercase;letter-spacing:.25em;color:var(--plum-glow);font-weight:700;margin-bottom:10px}
+.prod-name{font-family:'Playfair Display',serif;font-size:1.35rem;font-weight:500;color:var(--text-bright);margin-bottom:4px;line-height:1.3}
+.prod-sub{font-size:.85rem;color:var(--text-dim);font-style:italic}
+.film-card{margin-top:36px;padding:36px 32px;background:linear-gradient(135deg,var(--surface),var(--surface-card));border:1px solid rgba(212,168,83,.12);border-radius:18px;position:relative;overflow:hidden}
+
+/* ===== QUOTE ===== */
+.quote-sec{background:linear-gradient(135deg,rgba(91,32,102,.06),rgba(212,168,83,.03));position:relative;overflow:hidden}
+.quote-sec::before{content:'\201C';font-family:'Playfair Display',serif;font-size:18rem;color:rgba(139,63,160,.06);position:absolute;top:-50px;left:30px;line-height:1;pointer-events:none}
+.quote-text{font-family:'Playfair Display',serif;font-size:clamp(1.35rem,3.2vw,2.5rem);font-weight:400;line-height:1.45;color:var(--text-bright);max-width:860px;font-style:italic;position:relative;z-index:1}
+.quote-text em{color:var(--plum-glow);font-weight:500}
+.quote-attr{margin-top:26px;font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;color:var(--text-dim)}
+
+/* ===== AWARDS ===== */
+.awards-bg{background:var(--surface);position:relative;transition:background .5s}
+.aw-list{display:flex;flex-direction:column}
+.aw-row{display:grid;grid-template-columns:110px 1fr auto;gap:28px;align-items:center;padding:24px 0;border-bottom:1px solid var(--card-border);transition:all .35s}
+.aw-row:last-child{border-bottom:none}
+.aw-row:hover{padding-left:14px;background:rgba(139,63,160,.03);border-radius:8px}
+.aw-year{font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--gold);font-weight:500}
+.aw-title{font-size:.92rem;color:var(--text);line-height:1.6}
+.aw-icon{font-size:1.4rem;opacity:.8}
+
+/* ===== ACCORDION ===== */
+.accordion{margin-top:36px}
+.acc-toggle{width:100%;display:flex;align-items:center;justify-content:space-between;padding:20px 28px;background:var(--surface-card);border:1px solid var(--card-border);border-radius:14px;cursor:pointer;transition:all .35s;font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--text-bright);font-weight:500}
+.acc-toggle:hover{border-color:var(--card-hover-border)}
+.acc-arrow{width:20px;height:20px;transition:transform .4s cubic-bezier(.76,0,.24,1);flex-shrink:0}
+.acc-arrow svg{width:100%;height:100%;stroke:var(--gold);fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+.acc-toggle.open .acc-arrow{transform:rotate(180deg)}
+.acc-body{max-height:0;overflow:hidden;transition:max-height .6s cubic-bezier(.76,0,.24,1)}
+.acc-body.open{max-height:3000px}
+.acc-inner{padding:20px 0}
+.ved-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(360px,1fr));gap:14px}
+.ved-item{padding:18px 22px;background:var(--surface-card);border-radius:10px;border:1px solid var(--card-border);font-size:.86rem;color:var(--text-dim);line-height:1.65;transition:all .35s}
+.ved-item:hover{border-color:var(--card-hover-border)}
+.ved-item strong{color:var(--gold);font-weight:600}
+
+/* ===== SCIENCE ===== */
+.sci-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:24px}
+.sci-card{padding:32px;background:var(--surface);border:1px solid var(--card-border);border-radius:14px;transition:all .5s cubic-bezier(.76,0,.24,1)}
+.sci-card:hover{border-color:var(--card-hover-border);transform:translateY(-4px);box-shadow:0 18px 50px var(--shadow)}
+.sci-icon{font-size:1.8rem;margin-bottom:16px}
+.sci-title{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:500;color:var(--text-bright);margin-bottom:10px}
+.sci-text{color:var(--text-dim);font-size:.88rem;line-height:1.75}
+
+/* ===== COLLECTIVES ===== */
+.coll-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:24px}
+.coll-card{padding:32px 28px;background:var(--surface);border:1px solid var(--card-border);border-radius:18px;transition:all .5s cubic-bezier(.76,0,.24,1);position:relative;overflow:hidden}
+.coll-card::before{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--plum-glow),var(--gold));opacity:0;transition:opacity .4s}
+.coll-card:hover{transform:translateY(-6px);border-color:var(--card-hover-border);box-shadow:0 24px 60px var(--shadow)}
+.coll-card:hover::before{opacity:1}
+.coll-emoji{font-size:2rem;margin-bottom:14px}
+.coll-name{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:500;color:var(--text-bright);margin-bottom:4px}
+.coll-translate{font-size:.82rem;color:var(--plum-glow);font-style:italic;margin-bottom:12px}
+.coll-desc{font-size:.88rem;color:var(--text-dim);line-height:1.7;margin-bottom:14px}
+.coll-badge{display:inline-block;padding:4px 12px;border-radius:100px;font-size:.6rem;text-transform:uppercase;letter-spacing:.12em;font-weight:700;border:1px solid var(--border-c);color:var(--text-dim);margin-right:6px;margin-bottom:6px}
+.coll-achievements{margin-top:14px;padding-top:14px;border-top:1px solid var(--card-border)}
+.coll-ach-item{font-size:.82rem;color:var(--text-dim);line-height:1.6;padding:4px 0}
+.coll-ach-item strong{color:var(--gold);font-weight:600}
+
+/* ===== PEDAGOGY ===== */
+.ped-split{display:grid;grid-template-columns:1fr 1fr;gap:52px}
+.ped-h3{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:400;color:var(--text-bright);margin-bottom:16px}
+.ped-p{color:var(--text-dim);line-height:1.85;margin-bottom:16px;font-size:.94rem}
+.ped-tags{display:flex;flex-wrap:wrap;gap:9px;margin-top:18px}
+.ped-tag{padding:7px 16px;border:1px solid rgba(139,63,160,.15);border-radius:100px;font-size:.74rem;color:var(--text-dim);transition:all .3s}
+.ped-tag:hover{border-color:var(--plum-glow);color:var(--plum-glow);background:rgba(168,85,200,.06)}
+
+/* ===== SOCIAL ===== */
+.social-grid{display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:start}
+
+/* ===== FOOTER ===== */
+.footer{position:relative}
+.footer::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(212,168,83,.25),transparent)}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:52px;margin-bottom:52px}
+.footer-brand h3{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:400;color:var(--text-bright);margin-bottom:14px}
+.footer-brand p{color:var(--text-dim);font-size:.88rem;line-height:1.8}
+.footer-col h4{font-size:.65rem;text-transform:uppercase;letter-spacing:.25em;color:var(--gold);margin-bottom:16px;font-weight:700}
+.footer-col p{color:var(--text-dim);font-size:.86rem;margin-bottom:8px;line-height:1.6}
+.footer-bottom{border-top:1px solid var(--border-c);padding-top:28px;display:flex;justify-content:space-between;align-items:center}
+.footer-bottom p{font-size:.74rem;color:var(--text-dim)}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:1024px){
+    .about-grid,.ped-split,.social-grid{grid-template-columns:1fr;gap:36px}
+    .footer-grid{grid-template-columns:1fr;gap:28px}
+    .stats-grid{grid-template-columns:repeat(2,1fr)}
+    .stat-item:nth-child(2)::after{display:none}
+    .aw-row{grid-template-columns:85px 1fr auto;gap:14px}
+}
+@media(max-width:768px){
+    .nav-links{display:none}
+    .burger{display:flex}
+    .stats-grid{grid-template-columns:1fr 1fr}
+    .stat-item:not(:last-child)::after{display:none}
+    .prod-grid,.sci-grid,.coll-grid{grid-template-columns:1fr}
+    .ved-grid{grid-template-columns:1fr}
+    .aw-row{grid-template-columns:1fr;gap:6px}
+    .aw-icon{display:none}
+    .footer-bottom{flex-direction:column;gap:8px;text-align:center}
+    .tl-wrap{padding-left:38px}
+    .tl-line{left:10px}
+    .tl-item::before{left:-35px}
+    .hero-stats{gap:20px}
+    .btt{bottom:20px;right:20px;width:42px;height:42px}
+}
+@media(max-width:480px){
+    .sec{padding:44px 16px}
+    .tl-item{padding:22px 18px}
+    .prod-card,.coll-card{padding:24px 20px}
+    .nav{padding:14px 16px}
+    .nav.scrolled{padding:10px 16px}
+}
+</style>
+</head>
+<body>
+
+<!-- Scroll Progress -->
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- Preloader -->
+<div class="preloader" id="preloader">
+    <div class="preloader-icon"></div>
+    <div class="preloader-text">Портфолио</div>
+</div>
+<div class="grain"></div>
+
+<!-- Nav -->
+<nav class="nav" id="nav">
+    <div class="nav-left">
+        <div class="nav-logo">Д·О·Ш</div>
+    </div>
+    <ul class="nav-links" id="navLinks">
+        <li><a href="#about" data-section="about">О себе</a></li>
+        <li><a href="#career" data-section="career">Карьера</a></li>
+        <li><a href="#productions" data-section="productions">Спектакли</a></li>
+        <li><a href="#awards" data-section="awards">Награды</a></li>
+        <li><a href="#science" data-section="science">Наука</a></li>
+        <li><a href="#collectives" data-section="collectives">Коллективы</a></li>
+        <li><a href="#contact" data-section="contact">Контакты</a></li>
+    </ul>
+    <div class="nav-right">
+        <div class="theme-toggle" id="themeToggle" title="Переключить тему">
+            <span class="theme-toggle-icon moon">🌙</span>
+            <span class="theme-toggle-icon sun">☀️</span>
+        </div>
+        <div class="burger" id="burger">
+            <span></span><span></span><span></span>
+        </div>
+    </div>
+</nav>
+<div class="mobile-nav" id="mobileNav">
+    <a href="#about">О себе</a>
+    <a href="#career">Карьера</a>
+    <a href="#productions">Спектакли</a>
+    <a href="#awards">Награды</a>
+    <a href="#science">Наука</a>
+    <a href="#collectives">Коллективы</a>
+    <a href="#contact">Контакты</a>
+</div>
+
+<!-- Back to top -->
+<button class="btt" id="btt" title="Наверх">
+    <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+</button>
+
+<!-- HERO -->
+<section class="hero" id="heroSec">
+    <div class="hero-bg"></div>
+    <div class="hero-pattern" id="heroPattern"></div>
+    <div class="hero-orb" id="orb1"></div>
+    <div class="hero-orb" id="orb2"></div>
+    <div class="hero-orb" id="orb3"></div>
+    <div class="hero-content" id="heroContent">
+        <p class="hero-eyebrow">Кандидат искусствоведения · Директор театра · Декан</p>
+        <h1 class="hero-name">Дарижапова<br><em>Оюна Шираповна</em></h1>
+        <p class="hero-subtitle">Золотой голос Забайкальской земли — более 30 лет на службе культуры, искусства и&nbsp;сохранения традиций бурятского народа</p>
+        <div class="hero-line"></div>
+        <div class="hero-stats">
+            <div class="hero-stat"><span class="hero-stat-num" data-target="32">0</span><span class="hero-stat-label">Года стажа</span></div>
+            <div class="hero-stat"><span class="hero-stat-num" data-target="31">0</span><span class="hero-stat-label">В отрасли</span></div>
+            <div class="hero-stat"><span class="hero-stat-num" data-target="9">0</span><span class="hero-stat-label">Сольных программ</span></div>
+            <div class="hero-stat"><span class="hero-stat-num" data-target="20">0</span><span class="hero-stat-label">Научных статей</span></div>
+        </div>
+    </div>
+    <div class="scroll-hint"><span>Вниз</span><div class="scroll-hint-line"></div></div>
+</section>
+
+<!-- Marquee -->
+<div class="marquee">
+    <div class="marquee-track">
+        <span class="marquee-item">Театр «Амар сайн» <span class="marquee-dot"></span> Золотой голос Забайкалья <span class="marquee-dot"></span> Кандидат искусствоведения <span class="marquee-dot"></span> Кремлёвский дворец <span class="marquee-dot"></span> Франция <span class="marquee-dot"></span> Монголия <span class="marquee-dot"></span> «Алтаргана» <span class="marquee-dot"></span> Декан ЗабГУ <span class="marquee-dot"></span> Медаль ордена «За заслуги перед Отечеством»</span>
+        <span class="marquee-item">Театр «Амар сайн» <span class="marquee-dot"></span> Золотой голос Забайкалья <span class="marquee-dot"></span> Кандидат искусствоведения <span class="marquee-dot"></span> Кремлёвский дворец <span class="marquee-dot"></span> Франция <span class="marquee-dot"></span> Монголия <span class="marquee-dot"></span> «Алтаргана» <span class="marquee-dot"></span> Декан ЗабГУ <span class="marquee-dot"></span> Медаль ордена «За заслуги перед Отечеством»</span>
+    </div>
+</div>
+
+<!-- ABOUT -->
+<section class="about-wrap" id="about">
+    <div class="sec">
+        <div class="sec-head rv"><div class="sec-eye">Биография</div><h2 class="sec-title">Жизнь, посвящённая<br><em>искусству и традициям</em></h2></div>
+        <div class="about-grid">
+            <div class="about-text rv rv-d1">
+                <p>Оюну Дарижапову, исполнительницу старинных исконно бурятских песен, хранителя многовековых традиций и обычаев своего народа, с гордостью и восхищением называют золотым голосом Забайкальской земли. Она обладает красивым голосом — сопрано, профессиональной школой и несомненной музыкальностью. Каждый свой номер умеет превращать в незабываемый мини-спектакль.</p>
+                <p>За более 30 лет профессиональной деятельности Дарижапова О.Ш. внесла огромный вклад в развитие и сохранение отечественной культуры в области театрального искусства. Под её руководством Национальный театр песни и танца «Амар сайн» стал одним из самых известных и лучших театральных коллективов Забайкальского края. С 2022 года театром проведены 232 мероприятия с охватом зрителей 26 354, постановки посмотрели 8 082 зрителя.</p>
+            </div>
+            <div class="about-cards rv rv-d2">
+                <div class="a-card"><div class="a-card-label">Дата рождения</div><div class="a-card-val">07 апреля 1971 года</div></div>
+                <div class="a-card"><div class="a-card-label">Место рождения</div><div class="a-card-val">Читинская область, Дульдургинский район, село Узон</div></div>
+                <div class="a-card"><div class="a-card-label">Образование</div><div class="a-card-val">Высшее, «Дирижирование», Восточно-Сибирский государственный институт культуры, 1994&nbsp;год</div></div>
+                <div class="a-card"><div class="a-card-label">Учёная степень</div><div class="a-card-val">Кандидат искусствоведения, специальность 17.00.09 — «Теория и история искусства» (2011)</div></div>
+                <div class="a-card"><div class="a-card-label">Должность</div><div class="a-card-val">Директор ГУК «Национальный театр песни и танца «Амар сайн» (с&nbsp;февраля 2018&nbsp;г.)</div></div>
+                <div class="a-card"><div class="a-card-label">Совмещение</div><div class="a-card-val">Декан факультета культуры и искусств Забайкальского государственного университета (с&nbsp;марта 2024&nbsp;г.)</div></div>
+                <div class="a-card"><div class="a-card-label">Общий стаж / в отрасли / в должности</div><div class="a-card-val">32 года / 31 год / 7 лет</div></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-band">
+    <div class="sec">
+        <div class="stats-grid">
+            <div class="stat-item rv"><div class="stat-num" data-target="232">0</div><div class="stat-label">Мероприятий театра с 2022 г.</div></div>
+            <div class="stat-item rv rv-d1"><div class="stat-num" data-target="26354">0</div><div class="stat-label">Охват зрителей</div></div>
+            <div class="stat-item rv rv-d2"><div class="stat-num" data-target="30">0+</div><div class="stat-label">Выездных концертов 2023–2024</div></div>
+            <div class="stat-item rv rv-d3"><div class="stat-num" data-target="5000">0+</div><div class="stat-label">Охват конкурса бурятской песни 2025</div></div>
+        </div>
+    </div>
+</div>
+
+<!-- STATUS -->
+<section><div class="sec">
+    <div class="sec-head rv"><div class="sec-eye">Статус театра</div><h2 class="sec-title">Признание <em>«Амар сайн»</em></h2></div>
+    <div class="about-grid">
+        <div class="about-cards rv rv-d1">
+            <div class="a-card"><div class="a-card-label">2018 год</div><div class="a-card-val">Включение в Национальный реестр «Ведущие учреждения культуры России»</div></div>
+            <div class="a-card"><div class="a-card-label">2019 год</div><div class="a-card-val">Лучшее государственное учреждение культуры Забайкальского края</div></div>
+            <div class="a-card"><div class="a-card-label">2021 год</div><div class="a-card-val">Включение в федеральный реестр «Всероссийская книга Почёта» на основании предложения органов исполнительной власти Забайкальского края</div></div>
+        </div>
+        <div class="about-cards rv rv-d2">
+            <div class="a-card"><div class="a-card-label">Федеральная программа</div><div class="a-card-val">С 2018 года ежегодное участие в реализации федеральной программы «Театры малых городов» при поддержке партии «Единая Россия»</div></div>
+            <div class="a-card"><div class="a-card-label">Модернизация 2020–2025</div><div class="a-card-val">Два комфортабельных автобуса, мультимедийное, световое и звуковое оборудование, замена кресел в зрительном зале (2025)</div></div>
+        </div>
+    </div>
+</div></section>
+
+<!-- TIMELINE -->
+<section id="career"><div class="sec">
+    <div class="sec-head rv"><div class="sec-eye">Профессиональный путь</div><h2 class="sec-title">Ключевые вехи <em>карьеры</em></h2></div>
+    <div class="tl-wrap"><div class="tl-line"></div>
+        <div class="tl-item rv"><div class="tl-year">1988–1994</div><div class="tl-title">Начало творческой деятельности</div><div class="tl-desc">Поступление в Восточно-Сибирский государственный институт культуры. С первого курса — солистка ансамбля «Сибирский сувенир» и фольклорного ансамбля «Алтаргана» при Гостелерадио Республики Бурятия. 5 песен записаны на Республиканском радио, 2 — в студии Останкино в Москве.</div><span class="tl-badge badge-teal">Старт</span></div>
+        <div class="tl-item rv"><div class="tl-year">1994</div><div class="tl-title">Солистка ансамбля «Амар сайн»</div><div class="tl-desc">Солистка вокала Агинского окружного ансамбля песни и танца «Амар сайн».</div></div>
+        <div class="tl-item rv"><div class="tl-year">1999–2000</div><div class="tl-title">Международное признание во Франции</div><div class="tl-desc">Серебряный кубок — 2 место (1999) и Золотой кубок — 1 место (2000) среди исполнителей народных песен на Международном фольклорном фестивале в г. Пор-Сюр-Сон, Франция.</div><span class="tl-badge badge-gold">Международное признание</span></div>
+        <div class="tl-item rv"><div class="tl-year">2002</div><div class="tl-title">Золотая медаль «Алтаргана-2002»</div><div class="tl-desc">Диплом Лауреата и Золотая медаль Международного Всебурятского фестиваля «Алтаргана-2002» за высокое профессиональное исполнение народной песни.</div><span class="tl-badge badge-gold">Золотая медаль</span></div>
+        <div class="tl-item rv"><div class="tl-year">2005</div><div class="tl-title">Академическая карьера</div><div class="tl-desc">Начало преподавательской деятельности в ЗабГГПУ им. Н.Г. Чернышевского. Кафедра теории и методики музыкального образования и дирижерско-хоровых дисциплин.</div><span class="tl-badge badge-teal">Педагогика</span></div>
+        <div class="tl-item rv"><div class="tl-year">2011</div><div class="tl-title">Кандидатская диссертация</div><div class="tl-desc">Защита диссертации «Традиции и инновации песенной культуры хори-бурят: историко-искусствоведческий аспект». ВАК Министерства образования и науки РФ присуждена степень кандидата искусствоведения.</div><span class="tl-badge badge-gold">Наука</span></div>
+        <div class="tl-item rv"><div class="tl-year">28.07.2012</div><div class="tl-title">Медаль ордена «За заслуги перед Отечеством» II степени</div><div class="tl-desc">За большие заслуги в развитии отечественной культуры и искусства, многолетнюю плодотворную деятельность.</div><span class="tl-badge badge-plum">Государственная награда</span></div>
+        <div class="tl-item rv"><div class="tl-year">02.2018</div><div class="tl-title">Директор театра «Амар сайн»</div><div class="tl-desc">Назначение директором ГУК «Национальный театр песни и танца «Амар сайн». Включение театра в Национальный реестр «Ведущие учреждения культуры России».</div><span class="tl-badge badge-gold">Руководство</span></div>
+        <div class="tl-item rv"><div class="tl-year">2023</div><div class="tl-title">Кремлёвский дворец съездов и ВДНХ</div><div class="tl-desc">Выступление на сцене Кремлёвского дворца съездов в программе «Даурия — колыбель цивилизаций». Участие в презентации Забайкальского края на Выставке-форуме «Россия» на ВДНХ.</div><span class="tl-badge badge-plum">Федеральный уровень</span></div>
+        <div class="tl-item rv"><div class="tl-year">03.2024</div><div class="tl-title">Декан факультета культуры и искусств ЗабГУ</div><div class="tl-desc">Совмещает должность декана факультета культуры и искусств Забайкальского государственного университета. Научный руководитель двух аспирантов из КНР.</div><span class="tl-badge badge-teal">Новая роль</span></div>
+        <div class="tl-item rv"><div class="tl-year">12.2025</div><div class="tl-title">Концерты на территории ДНР и ЛНР</div><div class="tl-desc">С 13 по 20 декабря 2025 года — участие в составе творческой бригады Забайкальского края с более десятью концертами на территории Донецкой Народной Республики и Луганской Народной Республики.</div><span class="tl-badge badge-plum">Патриотическая миссия</span></div>
+    </div>
+</div></section>
+
+<!-- PRODUCTIONS -->
+<section id="productions"><div class="sec">
+    <div class="sec-head rv"><div class="sec-eye">Творческие проекты</div><h2 class="sec-title">Спектакли и <em>постановки</em></h2><p class="sec-desc">Многообразие жанров — от этно-мюзикла до драматического спектакля. Каждый проект реализован с привлечением известных деятелей искусств и синтезом разных жанров.</p></div>
+    <div class="prod-grid">
+        <div class="prod-card rv"><div class="prod-year-bg">2020</div><div class="prod-genre">Музыкально-хореографический спектакль</div><div class="prod-name">«Талын ехэ наадан»</div><div class="prod-sub">Игры степей</div></div>
+        <div class="prod-card rv rv-d1"><div class="prod-year-bg">2021</div><div class="prod-genre">Этно-мюзикл</div><div class="prod-name">«Хүхөө Намжил»</div><div class="prod-sub">&nbsp;</div></div>
+        <div class="prod-card rv rv-d2"><div class="prod-year-bg">2022</div><div class="prod-genre">Этно-балет</div><div class="prod-name">«Модэ. История Хунну»</div><div class="prod-sub">&nbsp;</div></div>
+        <div class="prod-card rv"><div class="prod-year-bg">2023</div><div class="prod-genre">Музыкально-пластический спектакль</div><div class="prod-name">«Аян»</div><div class="prod-sub">Путь</div></div>
+        <div class="prod-card rv rv-d1"><div class="prod-year-bg">2024</div><div class="prod-genre">Музыкально-драматический спектакль</div><div class="prod-name">«Тайзанай амисхал»</div><div class="prod-sub">Дыхание сцены</div></div>
+        <div class="prod-card rv rv-d2"><div class="prod-year-bg">2025</div><div class="prod-genre">Драматический спектакль</div><div class="prod-name">«Номоконов. Таёжный шаман»</div><div class="prod-sub">&nbsp;</div></div>
+    </div>
+    <div class="film-card rv">
+        <div class="prod-genre" style="color:#E85555;">Кинопроект · Серебряная медаль «Алтаргана-2024», номинация «Художественный фильм»</div>
+        <div class="prod-name">Художественный фильм «АЛАН ГОО»</div>
+        <div class="prod-sub">Совместный проект кинокомпании «Идуган интертаймент» (Монголия) и театра «Амар сайн»</div>
+    </div>
+</div></section>
+
+<!-- QUOTE -->
+<section class="quote-sec"><div class="sec rv">
+    <div class="quote-text">Она обладает способностью <em>чувствовать и понимать</em> многокрасочную палитру народной культуры и, преломляя увиденное и&nbsp;услышанное через собственное мастерство артиста, <em>преобразовать</em> в&nbsp;новое и&nbsp;интересное</div>
+    <div class="quote-attr">— Из характеристики профессиональной деятельности</div>
+</div></section>
+
+<!-- AWARDS -->
+<section class="awards-bg" id="awards"><div class="sec">
+    <div class="sec-head rv"><div class="sec-eye">Признание</div><h2 class="sec-title">Награды и <em>достижения</em></h2></div>
+    <div class="aw-list">
+        <div class="aw-row rv"><div class="aw-year">28.07.2012</div><div class="aw-title">Медаль ордена «За заслуги перед Отечеством» II степени — за большие заслуги в развитии отечественной культуры и искусства, многолетнюю плодотворную деятельность</div><div class="aw-icon">🏅</div></div>
+        <div class="aw-row rv"><div class="aw-year">01.07.2003</div><div class="aw-title">Почётное звание «Заслуженный работник культуры Агинского Бурятского автономного округа»</div><div class="aw-icon">🎖️</div></div>
+        <div class="aw-row rv"><div class="aw-year">2016</div><div class="aw-title">«Бронзовая медаль» Творческого союза художников России, Международной Федерации художников «За вклад в Отечественную культуру» (Москва)</div><div class="aw-icon">🥉</div></div>
+        <div class="aw-row rv"><div class="aw-year">1992</div><div class="aw-title">Диплом Лауреата и I премия за высокое исполнительское мастерство на конкурсе вокалистов им. народного артиста СССР Лх. Линховоина</div><div class="aw-icon">🎤</div></div>
+        <div class="aw-row rv"><div class="aw-year">1999</div><div class="aw-title">Серебряный кубок (2 место) — Международный фольклорный фестиваль, г. Пор-Сюр-Сон, Франция</div><div class="aw-icon">🏆</div></div>
+        <div class="aw-row rv"><div class="aw-year">2000</div><div class="aw-title">Золотой кубок (1 место) — Международный фольклорный фестиваль, г. Пор-Сюр-Сон, Франция</div><div class="aw-icon">🏆</div></div>
+        <div class="aw-row rv"><div class="aw-year">2002</div><div class="aw-title">Диплом Лауреата и Золотая медаль Международного Всебурятского фестиваля «Алтаргана-2002»</div><div class="aw-icon">🥇</div></div>
+        <div class="aw-row rv"><div class="aw-year">2006</div><div class="aw-title">Лауреат VIII-го открытого фестиваля-конкурса преподавателей и студентов музыкальных факультетов России, г. Кострома</div><div class="aw-icon">🎵</div></div>
+        <div class="aw-row rv"><div class="aw-year">2011</div><div class="aw-title">Знак Почёта университета «За заслуги в области высшего педагогического образования»</div><div class="aw-icon">⭐</div></div>
+        <div class="aw-row rv"><div class="aw-year">2024</div><div class="aw-title">Серебряная медаль Международного фестиваля «Алтаргана-2024» за фильм «АЛАН ГОО», номинация «Художественный фильм»</div><div class="aw-icon">🎬</div></div>
+    </div>
+
+    <!-- ACCORDION: Ведомственные награды -->
+    <div class="accordion rv">
+        <div class="acc-toggle" id="accToggle">
+            Ведомственные награды и благодарности
+            <div class="acc-arrow"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+        </div>
+        <div class="acc-body" id="accBody">
+            <div class="acc-inner">
+                <div class="ved-grid">
+                    <div class="ved-item"><strong>2001</strong> — Почётная грамота Союза театральных деятелей Республики Бурятия «За выдающийся вклад в пропаганду и развитие национального музыкального творчества»</div>
+                    <div class="ved-item"><strong>2001</strong> — Почётная грамота Министерства культуры Республики Бурятия «За активную пропаганду бурятской песни и высокое исполнительское мастерство»</div>
+                    <div class="ved-item"><strong>2001</strong> — Благодарственные письма Главы администрации АБАО и Администрации Усть-Ордынского Бурятского автономного округа</div>
+                    <div class="ved-item"><strong>2002</strong> — Почётная грамота Главы администрации АБАО «За активное участие в подготовке и проведении Дней Читинской области и АБАО в г. Москве»</div>
+                    <div class="ved-item"><strong>2005</strong> — Грамота Управления культуры администрации городского округа «Город Чита» «За развитие и пропаганду национального искусства»</div>
+                    <div class="ved-item"><strong>2008</strong> — Благодарственное письмо за подготовку лауреатов IX-открытого фестиваля-конкурса в г. Кострома</div>
+                    <div class="ved-item"><strong>2009</strong> — Почётные грамоты Министерства культуры Забайкальского края и Мэра города Читы</div>
+                    <div class="ved-item"><strong>2010</strong> — Почётная грамота Минкультуры Забайкальского края «За добросовестный труд, успехи в обучении и воспитании детей»</div>
+                    <div class="ved-item"><strong>2011</strong> — Почётная грамота Минкультуры Забайкальского края «За яркое творчество, большой личный вклад в сохранение традиционной бурятской культуры»</div>
+                    <div class="ved-item"><strong>2012</strong> — Благодарность Минкультуры, Почётная грамота Думы городского округа «Город Чита»</div>
+                    <div class="ved-item"><strong>2015</strong> — Почётная грамота Минкультуры Забайкальского края «За многолетний добросовестный труд, высокий профессионализм»</div>
+                    <div class="ved-item"><strong>2016</strong> — Почётные грамоты Минкультуры «За вклад в развитие культуры» и «За личный вклад в развитие культуры и искусства»</div>
+                    <div class="ved-item"><strong>2017</strong> — Благодарственное письмо Минкультуры за «Сагаалган-2017», Почётная грамота главы г.о. «Город Чита»</div>
+                    <div class="ved-item"><strong>2018, 2021, 2022</strong> — Благодарственные письма Губернатора Забайкальского края</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div></section>
+
+<!-- SCIENCE -->
+<section id="science"><div class="sec">
+    <div class="sec-head rv"><div class="sec-eye">Исследования</div><h2 class="sec-title">Научная <em>деятельность</em></h2></div>
+    <div class="sci-grid">
+        <div class="sci-card rv"><div class="sci-icon">📜</div><div class="sci-title">Диссертация</div><div class="sci-text">«Традиции и инновации песенной культуры хори-бурят: историко-искусствоведческий аспект». Специальность 17.00.09 — «Теория и история искусства». ВАК Минобрнауки РФ, июль 2011 года. Новизна: осмысление влияния трансграничья на сохранение традиций и появление инноваций в песенной культуре хори-бурят.</div></div>
+        <div class="sci-card rv rv-d1"><div class="sci-icon">🌍</div><div class="sci-title">Экспедиционные исследования</div><div class="sci-text">Полевой материал, собранный в местах компактного проживания хори-бурят: Агинский Бурятский округ (Россия), Хэнтэйские и Дорнодские аймаки (Монголия), сомон Шэнэхээн (Внутренняя Монголия, Китай). Концептуальный анализ жанровой системы и певческого стиля хори-бурят.</div></div>
+        <div class="sci-card rv rv-d2"><div class="sci-icon">📚</div><div class="sci-title">Публикации и издания</div><div class="sci-text">Более 20 научных статей. Сборник детских песен «Дуулая, нүхэд!» («Споемте, друзья!»). Сборник бурятских народных песен «Арадайм алтан абдарhаа» (2022, 133 экз.) — уникальная система QR-кодов для аудио-версий.</div></div>
+        <div class="sci-card rv rv-d3"><div class="sci-icon">🎓</div><div class="sci-title">Научное руководство</div><div class="sci-text">С 2024 года — научный руководитель двух аспирантов из КНР: «Влияние бельканто на вокальное искусство современного Китая в контексте теории культурной диффузии» и «Цифровизация вокального искусства в современной сценической культуре».</div></div>
+    </div>
+</div></section>
+
+<!-- COLLECTIVES -->
+<section id="collectives"><div class="sec">
+    <div class="sec-head rv"><div class="sec-eye">Наставничество</div><h2 class="sec-title">Созданные <em>коллективы</em></h2><p class="sec-desc">Оюна Шираповна не только директор и учёный, но и создатель нескольких уникальных творческих коллективов, ставших визитными карточками Забайкалья.</p></div>
+    <div class="coll-grid">
+        <div class="coll-card rv">
+            <div class="coll-emoji">🎶</div>
+            <div class="coll-name">«Баяр»</div>
+            <div class="coll-translate">Радость</div>
+            <div class="coll-desc">Детский фольклорный ансамбль ДШИ №3 г. Читы. Создан в ноябре 2006 года. Свыше 100 воспитанников. Активная работа по популяризации бурятского фольклора среди детей, не владеющих родной речью.</div>
+            <div class="coll-badge">С 2006 г.</div><div class="coll-badge">100+ детей</div><div class="coll-badge">ДШИ №3 г. Чита</div>
+            <div class="coll-achievements">
+                <div class="coll-ach-item"><strong>2023</strong> — Лауреат III степени XIV Международного конкурса вокалистов им. Л.Л. Линховоина</div>
+                <div class="coll-ach-item"><strong>2024</strong> — Лауреат VIII Международного конкурса оркестров и ансамблей им. Н.П. Будашкина</div>
+                <div class="coll-ach-item"><strong>2024</strong> — Лауреат Международного конкурса-фестиваля «Планета талантов»</div>
+                <div class="coll-ach-item"><strong>2024</strong> — Лауреат XI Международного фестиваля-конкурса «На великом чайном пути»</div>
+            </div>
+        </div>
+        <div class="coll-card rv rv-d1">
+            <div class="coll-emoji">🌸</div>
+            <div class="coll-name">«Тэрэнги»</div>
+            <div class="coll-translate">Багульник</div>
+            <div class="coll-desc">Первая в истории г. Читы вокальная студия бурятской песни. Открыта в 2003 году по инициативе Оюны Дарижаповой при поддержке администрации города в Центре эстетического воспитания детей «Орешки». В 2005 году — первое в истории отделение бурятского фольклора.</div>
+            <div class="coll-badge">С 2003 г.</div><div class="coll-badge">Первая в Чите</div><div class="coll-badge">ЦЭВ «Орешки»</div>
+        </div>
+        <div class="coll-card rv rv-d2">
+            <div class="coll-emoji">🤝</div>
+            <div class="coll-name">«Найрамдал»</div>
+            <div class="coll-translate">Дружба</div>
+            <div class="coll-desc">Студенческий фольклорный ансамбль при Институте филологии и межкультурной коммуникации ЗабГГПУ. Визитная карточка университета. В составе — студенты разных национальностей. Дипломанты краевого конкурса «Серебряные голоса» (2004), Международного конкурса «Дангина — Гэсэр — 2006» (Улан-Удэ), 3 место на «Забайкальской студенческой весне — 2005».</div>
+            <div class="coll-badge">При ЗабГГПУ</div><div class="coll-badge">Визитная карточка</div>
+        </div>
+        <div class="coll-card rv rv-d3">
+            <div class="coll-emoji">🎵</div>
+            <div class="coll-name">«Вионелла»</div>
+            <div class="coll-translate">Имена вокалисток</div>
+            <div class="coll-desc">Вокальный коллектив факультета художественного образования ЗабГГПУ. Создан в сентябре 2005 года. Репертуар: академическое и эстрадное направления, бурятские, монгольские, китайские песни. Выступления с оркестром «Байкал» и ансамблем им. Н.П. Будашкина. Участие в Международном фестивале «Студенческая весна — 2006» в г. Хайлар (КНР).</div>
+            <div class="coll-badge">С 2005 г.</div><div class="coll-badge">a cappella + фортепиано</div><div class="coll-badge">КНР, Хайлар</div>
+        </div>
+    </div>
+</div></section>
+
+<div class="divider"></div>
+
+<!-- ORGANIZATIONS -->
+<section><div class="sec">
+    <div class="sec-head rv"><div class="sec-eye">Организаторская деятельность</div><h2 class="sec-title">Фестивали, конкурсы, <em>мероприятия</em></h2></div>
+    <div class="ved-grid">
+        <div class="ved-item rv"><strong>2018, 2025</strong> — Конкурс юмористических рассказов «Хүхюун Бадмаахай» («Весёлый Бадма») среди школьников</div>
+        <div class="ved-item rv"><strong>2018</strong> — Фестиваль бурятского языка «Буряад хэлэеэ мандуулая» в Агинском Бурятском округе</div>
+        <div class="ved-item rv"><strong>2019</strong> — Международный ТВ-конкурс «Гэгээн аласай одод» совместно с телеканалом «МИР-Бурятия»</div>
+        <div class="ved-item rv"><strong>2020</strong> — Межрегиональный конкурс «Арадай абдарhаа» и литературный конкурс «Буряадаараа уншая хамтадаа»</div>
+        <div class="ved-item rv"><strong>2023</strong> — Международная конференция «Эпосы, сказания, легенды: опыт прошлого, возможности настоящего и стратегии будущего»</div>
+        <div class="ved-item rv"><strong>2024</strong> — Краевой хореографический фестиваль-конкурс «Ёхор»</div>
+        <div class="ved-item rv"><strong>2025</strong> — Межмуниципальный конкурс бурятской народной песни (охват более 5 000 человек)</div>
+        <div class="ved-item rv"><strong>Ежегодно</strong> — Дальневосточный экономический форум, Белый месяц, День образования Забайкальского края, фестиваль унтов</div>
+    </div>
+</div></section>
+
+<div class="divider"></div>
+
+<!-- SOCIAL -->
+<section><div class="sec">
+    <div class="sec-head rv"><div class="sec-eye">Служение обществу</div><h2 class="sec-title">Социальная и <em>патриотическая</em> деятельность</h2></div>
+    <div class="social-grid">
+        <div class="about-text rv">
+            <p>Дарижапова О.Ш. организовала выступление артистов театра на безвозмездной основе в клиническом госпитале им. А.А. Вишневского перед участниками СВО и медицинским персоналом. Вместе с работниками театра плетут маскировочные сети, участвуют в сборе средств и гуманитарной помощи для военнослужащих.</p>
+            <p>С 06 по 10 апреля 2024 года совместно с коллективами театра «Забайкальские узоры», Дома офицеров и «Читинской слободы» выезжала с целью поддержки забайкальских военнослужащих — участников спецоперации (29-я общевойсковая армия ВВО). С 13 по 20 декабря 2025 года — более 10 концертов на территории ДНР и ЛНР.</p>
+        </div>
+        <div class="about-cards rv rv-d1">
+            <div class="a-card"><div class="a-card-label">Благотворительность</div><div class="a-card-val">Регулярные концерты для ветеранов, социально незащищённых слоёв населения и в детских учреждениях</div></div>
+            <div class="a-card"><div class="a-card-label">Культурная дипломатия</div><div class="a-card-val">Выступления на концертных площадках Монголии г. Улан-Батора и г. Чингиса. Участие в 100-летии Республики Бурятия, фестивале «Музыка Бодхи»</div></div>
+            <div class="a-card"><div class="a-card-label">Фестиваль «Алтаргана»</div><div class="a-card-val">Руководство подготовкой участников «Алтаргана — 2018, 2022, 2024». Постоянный член жюри. В 2024 — участие в 7 конкурсах, призовые места в 4 номинациях.</div></div>
+        </div>
+    </div>
+</div></section>
+
+<!-- FOOTER -->
+<footer class="footer" id="contact"><div class="sec">
+    <div class="footer-grid">
+        <div class="footer-brand rv"><h3>Дарижапова Оюна Шираповна</h3><p>Кандидат искусствоведения, директор ГУК «Национальный театр песни и танца «Амар сайн», декан факультета культуры и искусств Забайкальского государственного университета. Заслуженный работник культуры Агинского Бурятского автономного округа.</p></div>
+        <div class="footer-col rv rv-d1"><h4>Контакты</h4><p>672038, Забайкальский край, г. Чита, пер. Каштакский, д. 1 А</p></div>
+        <div class="footer-col rv rv-d2"><h4>Театр «Амар сайн»</h4><p>Забайкальский край, Агинский район, пгт Агинское, ул. Ленина, д. 70</p></div>
+    </div>
+    <div class="footer-bottom"><p>© 2025 Портфолио Дарижаповой Оюны Шираповны</p><p>Составлено на основе официальных документов</p></div>
+</div></footer>
+
+<script>
+// ===== PRELOADER =====
+window.addEventListener('load',()=>setTimeout(()=>document.getElementById('preloader').classList.add('hide'),1200));
+
+// ===== THEME TOGGLE =====
+const html=document.documentElement;
+const tt=document.getElementById('themeToggle');
+const saved=localStorage.getItem('theme');
+if(saved)html.setAttribute('data-theme',saved);
+tt.addEventListener('click',()=>{
+    const next=html.getAttribute('data-theme')==='dark'?'light':'dark';
+    html.setAttribute('data-theme',next);
+    localStorage.setItem('theme',next);
+});
+
+// ===== SCROLL PROGRESS =====
+const sp=document.getElementById('scrollProgress');
+
+// ===== NAV SCROLL + ACTIVE SECTION + BACK TO TOP =====
+const nav=document.getElementById('nav');
+const btt=document.getElementById('btt');
+const sections=document.querySelectorAll('section[id],footer[id]');
+const navAs=document.querySelectorAll('.nav-links a[data-section]');
+
+function onScroll(){
+    const sy=window.scrollY;
+    const docH=document.documentElement.scrollHeight-window.innerHeight;
+    // progress
+    sp.style.width=(sy/docH*100)+'%';
+    // nav bg
+    nav.classList.toggle('scrolled',sy>70);
+    // btt
+    btt.classList.toggle('show',sy>600);
+    // active section
+    let current='';
+    sections.forEach(s=>{
+        const top=s.offsetTop-200;
+        if(sy>=top)current=s.getAttribute('id');
+    });
+    navAs.forEach(a=>{
+        a.classList.toggle('active',a.dataset.section===current);
+    });
+}
+window.addEventListener('scroll',onScroll,{passive:true});
+btt.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+
+// ===== PARALLAX HERO =====
+const heroContent=document.getElementById('heroContent');
+const heroPattern=document.getElementById('heroPattern');
+const orbs=[document.getElementById('orb1'),document.getElementById('orb2'),document.getElementById('orb3')];
+function parallax(){
+    const sy=window.scrollY;
+    if(sy<window.innerHeight*1.2){
+        const r=sy/window.innerHeight;
+        heroContent.style.transform='translateY('+sy*.35+'px)';
+        heroContent.style.opacity=1-r*1.2;
+        heroPattern.style.transform='translateY('+sy*.15+'px)';
+        orbs.forEach((o,i)=>{
+            const speed=.04+i*.025;
+            o.style.transform='translateY('+sy*speed+'px)';
+        });
+    }
+}
+window.addEventListener('scroll',parallax,{passive:true});
+
+// ===== BURGER =====
+const burger=document.getElementById('burger'),mn=document.getElementById('mobileNav');
+burger.addEventListener('click',()=>{burger.classList.toggle('open');mn.classList.toggle('open')});
+mn.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{burger.classList.remove('open');mn.classList.remove('open')}));
+
+// ===== SMOOTH SCROLL =====
+document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();const t=document.querySelector(a.getAttribute('href'));if(t)t.scrollIntoView({behavior:'smooth',block:'start'})}));
+
+// ===== REVEAL =====
+const rObs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('vis')}),{threshold:.06,rootMargin:'0px 0px -30px 0px'});
+document.querySelectorAll('.rv').forEach(el=>rObs.observe(el));
+
+// ===== COUNTER =====
+function animateNum(el,target,dur=2200){
+    const start=performance.now();const suf=el.textContent.includes('+')?'+':'';
+    function u(now){const p=Math.min((now-start)/dur,1);const e=1-Math.pow(1-p,3);el.textContent=Math.round(target*e).toLocaleString('ru-RU')+suf;if(p<1)requestAnimationFrame(u)}
+    requestAnimationFrame(u);
+}
+const cObs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){const el=e.target;const t=parseInt(el.dataset.target);if(t)animateNum(el,t);cObs.unobserve(el)}}),{threshold:.3});
+document.querySelectorAll('[data-target]').forEach(el=>cObs.observe(el));
+
+// ===== ACCORDION =====
+const accT=document.getElementById('accToggle');
+const accB=document.getElementById('accBody');
+accT.addEventListener('click',()=>{accT.classList.toggle('open');accB.classList.toggle('open')});
+</script>
+</body>
+</html>
