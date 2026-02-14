@@ -292,6 +292,22 @@ body{font-family:'Raleway',sans-serif;background:var(--bg);color:var(--text);ove
     .nav{padding:14px 16px}
     .nav.scrolled{padding:10px 16px}
 }
+
+/* ===== COOKIE BANNER ===== */
+.cookie-banner{position:fixed;bottom:0;left:0;right:0;z-index:9000;background:var(--surface);border-top:1px solid var(--border-c);padding:18px 32px;display:flex;align-items:center;justify-content:center;gap:18px;flex-wrap:wrap;transform:translateY(100%);transition:transform .5s cubic-bezier(.76,0,.24,1);box-shadow:0 -4px 24px var(--shadow)}
+.cookie-banner.show{transform:translateY(0)}
+.cookie-banner p{font-size:.84rem;color:var(--text-dim);line-height:1.6;text-align:center}
+.cookie-banner a{color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(212,168,83,.3);transition:border-color .3s}
+.cookie-banner a:hover{border-color:var(--gold)}
+.cookie-btn{padding:9px 24px;border:none;border-radius:100px;font-family:'Raleway',sans-serif;font-size:.78rem;font-weight:600;letter-spacing:.06em;cursor:pointer;transition:all .3s}
+.cookie-btn-accept{background:var(--gold);color:var(--plum-deep)}
+.cookie-btn-accept:hover{background:var(--gold-light)}
+.cookie-btn-decline{background:transparent;color:var(--text-dim);border:1px solid var(--border-c)}
+.cookie-btn-decline:hover{border-color:var(--plum-light);color:var(--text)}
+@media(max-width:480px){
+    .cookie-banner{padding:16px;gap:12px}
+    .cookie-banner p{font-size:.8rem}
+}
 </style>
 </head>
 <body>
@@ -609,6 +625,13 @@ body{font-family:'Raleway',sans-serif;background:var(--bg);color:var(--text);ove
     <div class="footer-bottom"><p>© 2025 Портфолио Дарижаповой Оюны Шираповны</p><p><a href="privacy-policy.html" style="color:var(--text-dim);text-decoration:none;border-bottom:1px solid var(--border-c);transition:color .3s,border-color .3s">Политика конфиденциальности</a></p><p>Составлено на основе официальных документов</p></div>
 </div></footer>
 
+<!-- Cookie Banner -->
+<div class="cookie-banner" id="cookieBanner">
+    <p>Мы используем файлы cookie, чтобы сайт работал лучше. Оставаясь с нами, вы соглашаетесь с <a href="privacy-policy.html">Политикой конфиденциальности</a>.</p>
+    <button class="cookie-btn cookie-btn-accept" id="cookieAccept">Принять</button>
+    <button class="cookie-btn cookie-btn-decline" id="cookieDecline">Отклонить</button>
+</div>
+
 <script>
 // ===== PRELOADER =====
 window.addEventListener('load',()=>setTimeout(()=>document.getElementById('preloader').classList.add('hide'),1200));
@@ -699,6 +722,22 @@ document.querySelectorAll('[data-target]').forEach(el=>cObs.observe(el));
 const accT=document.getElementById('accToggle');
 const accB=document.getElementById('accBody');
 accT.addEventListener('click',()=>{accT.classList.toggle('open');accB.classList.toggle('open')});
+
+// ===== COOKIE BANNER =====
+(function(){
+    const cb=document.getElementById('cookieBanner');
+    if(!localStorage.getItem('cookieConsent')){
+        setTimeout(()=>cb.classList.add('show'),2400);
+    }
+    document.getElementById('cookieAccept').addEventListener('click',()=>{
+        localStorage.setItem('cookieConsent','accepted');
+        cb.classList.remove('show');
+    });
+    document.getElementById('cookieDecline').addEventListener('click',()=>{
+        localStorage.setItem('cookieConsent','declined');
+        cb.classList.remove('show');
+    });
+})();
 </script>
 </body>
 </html>
